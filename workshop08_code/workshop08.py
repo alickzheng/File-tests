@@ -81,7 +81,19 @@ def is_pal(string):
     >>> is_pal('aba')
     True
     """
-    pass
+    if len(string) == 0:
+        return True
+    a = string[0]
+    b = string[-1]
+    if a != b:
+        return False
+    elif a == b :
+        if len(string) == 1:
+            return True
+        else :
+            return is_pal(string[1:-1])
+    else :
+        return False
 
 
 from collections import deque
@@ -114,7 +126,17 @@ def bfs_traversal(graph, s, goals=[]):
      |     |           |     |                              
     ***   ***---***   ***   ***---***---***---***---***---***   
     """
-    pass
+    visited = []
+    boundary = deque([s]) 
+    while len(boundary) > 0:
+        v = boundary.popleft()
+        if v in goals:
+            visited += [v]
+            return visited
+        visited += [v]
+        for w in neighbours(v, graph): 
+            if w not in visited and w not in boundary:
+                boundary.append(w) 
 
 
 def dfs_traversal(graph, s, goals=[]):
@@ -141,8 +163,26 @@ def dfs_traversal(graph, s, goals=[]):
      |     |           |     |                              
     ***   ***---***   007   009---010---011---012---013---014   
     """
-    pass
+    visited = []
+    boundary = [s]
+    while len(boundary) > 0:
+        v = boundary.pop()
+        if v in goals:
+            visited += [v]
+            return visited
+        visited += [v]
+        for w in neighbours(v, graph): 
+            if w not in visited and w not in boundary:
+                boundary.append(w) 
 
+def get_path(parent_list, s, e):
+    reversed_path = [e]
+    v = e
+    while v != s:
+        reversed_path.append(parent_list[v])
+        v = reversed_path[-1]
+    path = reverse(reversed_path)
+    return path
 
 def bfs_path(graph, s, goals=[]):
     """
@@ -158,7 +198,22 @@ def bfs_path(graph, s, goals=[]):
      |     |           |     |                              
     ***   ***---***   ***   ***---***---***---***---***---***   
     """
-    pass
+    visited = []
+    boundary = deque([s])
+    p = [[] for _ in range(len(graph))]
+    e = 0
+    while len(boundary) > 0:
+        v = boundary.popleft()
+        if v in goals:
+            visited += [v]
+            e += v
+            path = get_path(p, s, e)
+            return path
+        visited += [v]
+        for w in neighbours(v, graph): 
+            if w not in visited and w not in boundary:
+                boundary.append(w)
+                p[w] = v
 
 
 def dfs_path(graph, s, goals=[]):
@@ -175,12 +230,32 @@ def dfs_path(graph, s, goals=[]):
      |     |           |     |                              
     ***   ***---***   ***   ***---***---***---***---***---***   
     """
-    pass
+    visited = []
+    boundary = [s]
+    p = [[] for _ in range(len(graph))]
+    e = 0
+    while len(boundary) > 0:
+        v = boundary.pop()
+        if v in goals:
+            visited += [v]
+            e += v
+            path = get_path(p, s, e)
+            return path
+        visited += [v]
+        for w in neighbours(v, graph): 
+            if w not in visited and w not in boundary:
+                boundary.append(w)
+                p[w] = v 
 
 
 if __name__=='__main__':
     """
-    <your paragraph with examples here>
+    I found that when I vary my inputs so that the goal is in a side path that
+    is a further branch, the bfs was always shorter as it tested every branch as
+    oppose to dfs which search each branch until the end of the branch. As such
+    I believe dfs is more efficient when you know exactly which branch of the
+    graph you wish to search and bfs is on average more efficient when you have
+    no information as to the position of the goal
     """
 
     import doctest
