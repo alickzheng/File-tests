@@ -8,9 +8,9 @@ will then check your name, so your name acts as a failsafe.
 
 # Student details
 def details():
-    student_number = '' #write your student number as a string
-    student_email = '' + '@student.monash.edu' #write your student email
-    name = '' #write your name as it appears on Moodle
+    student_number = '28747445' #write your student number as a string
+    student_email = 'hzhe0006' + '@student.monash.edu' #write your student email
+    name = 'Huihong Zheng' #write your name as it appears on Moodle
     return str(student_number), student_email, name
 
 
@@ -27,8 +27,21 @@ def lex_less_eq(a, b):
     >>> lex_less_eq([1, 2, 3], [0, 1, 2, 3])
     False
     """
-    pass
-
+    a_n = len(a)
+    b_n = len(b)
+    if a_n == 0 or b_n == 0:
+        if a_n == 0:
+            return True
+        else:
+            return False
+    if a_n == b_n == 0:
+        if a == b or a < b:
+            return True
+    if a[0] > b[0]:
+        return False
+    elif a[0] < b[0]:
+        return True
+    return lex_less_eq(a[1:], b[1:])
 
 # Task 1: Part A - Recursive Bitlist
 def rbitlists(n):
