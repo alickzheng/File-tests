@@ -44,9 +44,12 @@ def rgcd(x1, x2):
         return rgcd(x2, x1%x2)
 
 #sorting algorithms
-import random
-test = random.sample(range(0, 100), 10)
+test = [0, 9 ,8 ,7 ,6 ,3, 2, 1]
 def rSelSort(lst):
+    '''
+    >>> rSelSort(test)
+    [0, 1, 2, 3, 6, 7, 8, 9]
+    '''
     res = []
     if len(lst) <= 1:
         return lst
@@ -73,4 +76,38 @@ def empty_graph(n):
     res = [[0 for _ in range(n)] for _ in range(n)]
     return res
 
-print(empty_graph(3))
+graph = [[0, 1, 1, 0, 0], 
+        [1, 0, 0, 0, 0], 
+        [1, 0, 0, 1, 0], 
+        [0, 0, 1, 1, 0], 
+        [0, 0, 1, 0, 0]]
+
+def friend(graph, v1, v2):
+    '''
+    >>> friend(graph, 0, 1)
+    True
+    '''
+    if graph[v1][v2] == 1:
+        return True
+    else:
+        return False
+
+def secFriend(graph, v1, v2):
+    '''
+    >>> secFriend(graph, 0 ,3)
+    True
+    '''
+    for i in range(len(graph[v1])):
+        if graph[v1][i] == 1:
+            if graph[i][v2] == 1:
+                return True
+    return False
+
+def hasPath(graph, v1, v2):
+    pass
+
+
+
+if __name__=='__main__':
+    import doctest
+    doctest.testmod(verbose=True) 
