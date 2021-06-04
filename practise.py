@@ -83,20 +83,12 @@ graph = [[0, 1, 1, 0, 0],
         [0, 0, 1, 0, 0]]
 
 def friend(graph, v1, v2):
-    '''
-    >>> friend(graph, 0, 1)
-    True
-    '''
     if graph[v1][v2] == 1:
         return True
     else:
         return False
 
 def secFriend(graph, v1, v2):
-    '''
-    >>> secFriend(graph, 0 ,3)
-    True
-    '''
     for i in range(len(graph[v1])):
         if graph[v1][i] == 1:
             if graph[i][v2] == 1:
@@ -106,7 +98,8 @@ def secFriend(graph, v1, v2):
 def hasPath(graph, v1, v2):
     pass
 
-
+def red_echelon(matrix):
+    pass
 
 if __name__=='__main__':
     import doctest
