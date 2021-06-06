@@ -101,6 +101,76 @@ def hasPath(graph, v1, v2):
 def red_echelon(matrix):
     pass
 
-if __name__=='__main__':
-    import doctest
-    doctest.testmod(verbose=True) 
+
+
+#general backtracking algo
+'''
+def solutions(completed, options, part=[]):
+    if completed(part):
+        return [part]
+    else:
+        res = []
+        for o in options(part):
+            augmented = part+[o]
+            res += solutions(completed, options, augmented)
+        return res
+'''
+#if __name__=='__main__':
+    #import doctest
+    #doctest.testmod(verbose=True) 
+
+def solutions(completed, options, part=[]):
+    if completed(part):
+        return [part]
+    else:
+        res = []
+        for o in options(part):
+            augmented = part+[o]
+            res += solutions(completed, options, augmented)
+        return res
+
+def neighbour(vertex, graph):
+    res = [i for i in range(len(graph)) if graph[vertex][i] == 1]
+    return res
+
+def ham_cycle(graph):
+    def completed(part):
+        if len(part) == len(graph):# and graph[part[-1]][0]:
+            return True
+
+    def options(part):
+        res = []
+        path = [0] + part
+        for v in neighbour(path[-1], graph):
+            if v not in path:
+                res += [v]
+        return res
+
+    res = solutions(completed, options)
+    return res
+
+graph = [[0, 1, 0, 1, 0], 
+        [1, 0, 1, 1, 1], 
+        [0, 1, 0, 0, 1], 
+        [1, 1, 0, 0, 1], 
+        [0, 1, 1, 1, 0]]
+
+
+
+def nqueengen(n):
+    def completed(part):
+        if len(part) == n:
+            return [part]
+
+    def options(part):
+        res = []
+        col = len(part)
+        for row in range(n):
+            if not is_atk(row, col, part):
+                res += [row]
+        return res
+
+    res = solutions(completed, options)
+    return res
+
+print(ham_cycle(graph))
