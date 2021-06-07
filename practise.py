@@ -173,4 +173,27 @@ def nqueengen(n):
     res = solutions(completed, options)
     return res
 
-print(ham_cycle(graph))
+def quiz_total(q1, q2 ,q3, q4, q5):
+    scores = [q1, q2, q3, q4, q5]
+    return sum(scores) / len(scores)
+
+def ass_total(a1, a2, a3, a4, a5):
+    scores = [a1, a2, a3, a4, a5]
+    return sum(scores) / len(scores)
+
+quiz = quiz_total(11/15, 8/15, 6/15, 1/15, 11/15) * 0.15
+ass = ass_total(12/20, 10/20, 19/20, 14/20, 16/20) * 0.20
+attendence = 0.05
+def overall(quiz, assignment, attendence):
+    lst = [quiz, assignment, attendence]
+    return sum(lst) / 0.40 * 100
+
+print(overall(quiz, ass, attendence))
+
+
+def emma_gay_camel(fuck):
+    return fuck
+
+fuck = "emma ghey"
+
+print(emma_gay_camel(fuck))
