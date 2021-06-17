@@ -191,9 +191,33 @@ def overall(quiz, assignment, attendence):
 print(overall(quiz, ass, attendence))
 
 
-def emma_gay_camel(fuck):
-    return fuck
+def rpermutations(lst):
+    """ Generates all permutations of input list.
+    
+    >>> sorted(rpermutations(list(range(1, 4))))
+    [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+    >>> sorted(rpermutations(list(range(1, 5))))
+    [[1, 2, 3, 4], [1, 2, 4, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 4, 2, 3], [1, 4, 3, 2], [2, 1, 3, 4], [2, 1, 4, 3], [2, 3, 1, 4], [2, 3, 4, 1], [2, 4, 1, 3], [2, 4, 3, 1], [3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 1, 4], [3, 2, 4, 1], [3, 4, 1, 2], [3, 4, 2, 1], [4, 1, 2, 3], [4, 1, 3, 2], [4, 2, 1, 3], [4, 2, 3, 1], [4, 3, 1, 2], [4, 3, 2, 1]]
+    >>> sorted(rpermutations(list('JOE')))
+    [['E', 'J', 'O'], ['E', 'O', 'J'], ['J', 'E', 'O'], ['J', 'O', 'E'], ['O', 'E', 'J'], ['O', 'J', 'E']]
 
-fuck = "emma ghey"
+    <first two base statements are set with length of the input list equalling 0 and 1 with 0 returning an empty list and 1 returning the input list
+    then the output list is created and the list is iterated down by creating a smaller list excluding the first entry of the original list. then for
+    each element in the permutation of the smaller list a list created from the originally excluded element and the element in the permutated list is appended
+    to the output list>
+    """
+    if len(lst) == 0:
+        return []
+    elif len(lst) == 1:
+        return [lst]
+    else:
+        perm = []
+        for i in lst:
+            j = [x for x in lst if x != i]
+            for p in rpermutations(j):
+                perm.append([i]+p)
+        return perm
+    
 
-print(emma_gay_camel(fuck))
+from itertools import permutations
+print(list(permutations([0, 0, 1, 1], 4)))
