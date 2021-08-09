@@ -6,8 +6,8 @@
     </head>
     <body>
         <div>
+            <h1 style="font-size:150%;">Click Tasks to Complete</h1>
             <ul id="toDoList" class="content">
-                <li><div style="font-size:150%;">Click Tasks to Complete</div></li>
             </ul>
         </div>
         <div>
@@ -18,6 +18,10 @@
                 <input type="date" id=dueDate>
                 <input type="button" value="Add" onclick="addTask()">
             </form>
+        </div>
+        <div>
+            <button onclick="localStorage.clear(); window.location.reload(true);
+            ">Clear All</button>
         </div>
         <script src="ToDoList.js"></script>
     </body>
