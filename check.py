@@ -1,14 +1,26 @@
-def reverse(lst):
-    if len(lst) == 0:
-        return []
-    return [lst[-1]] + reverse(lst[:-1])
+from typing import List, TypeVar
 
-def pair(lst):
-    pair = []
-    for i in lst:
-        for j in range(len(lst)):
-            if i != lst[j]:
-                pair.append([i, lst[j]])
-    return pair
-check = pair("mathematics")
-print(len(check))
+# DO NOT add comments to this file
+# Use the provided file on the right ->
+
+T = TypeVar('T')
+
+def insertion_sort(the_list: List[T]):
+    length = len(the_list)
+    for i in range(1, length):
+        key = the_list[i]
+        j = i-1
+        while j >= 0 and key < the_list[j] :
+                the_list[j + 1] = the_list[j]
+                j -= 1
+        the_list[j + 1] = key
+
+def main() -> None:
+    arr = []
+    insertion_sort(arr)
+    for i in range(len(arr)):
+        print (arr[i], end=" ")
+    print()
+
+
+main()
